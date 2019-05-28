@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:utils="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        <context:annotation-config/>
+
+    <bean id="duke" class="SpringInAction.components.Juggler">
+    </bean>
+    <bean id="sonnet29" class="SpringInAction.components.Sonnet29"/>
+    <bean id="poeticDuke" class="SpringInAction.components.PoeticJuggler" autowire="constructor"></bean>
+    <bean id="theStage" class="SpringInAction.components.Stage" factory-method="getInstance"></bean>
+    <bean id="ticket" class="SpringInAction.components.Ticket" scope="prototype"></bean>
+    <bean id="auditorium" class="SpringInAction.components.Auditorium" init-method="turnOnLights" destroy-method="turnOffLights"></bean>
+    <bean id="kenny" class="SpringInAction.components.Instrumentalist">
+        <property name="song" value="Jingle Bells"></property>
+        <property name="instrument">
+            <bean class="SpringInAction.components.Piano"></bean>
+        </property>
+    </bean>
+<!--                                                        -->
+    <bean id="kenny1" class="SpringInAction.components.Instrumentalist">
+        <property name="song" value="Jingle Bells"></property>
+    </bean>
+
+
+   <bean id="instrument" class="SpringInAction.components.Saxophone"></bean>
+
+<!--                                                        -->
+    <bean id="saxophone" class="SpringInAction.components.Saxophone"></bean>
+    <bean id="piano" class="SpringInAction.components.Piano"></bean>
+    <bean id="hank" class="SpringInAction.components.OneManBand">
+        <property name="instruments">
+            <map>
+                <entry key="SAXOPHONE" value-ref="saxophone"></entry>
+                <entry key="PIANO" value-ref="piano"></entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="karl" class="SpringInAction.components.Instrumentalist">
+        <property name="song" value="#{kenny.song}"></property>
+    </bean>
+
+
+
+    <bean id = "songSelector" class="SpringInAction.components.SongSelector">
+        <property name="song" value="JingleBells"></property>
+    </bean>
+
+    <bean id="kenny2" class="SpringInAction.components.Instrumentalist">
+        <property name="song" value="Jingle Bells"></property>
+        <property name="instrument" value="#{songSelector.selectSong() eq 'JingleBells'? saxophone : piano}">
+        </property>
+    </bean>
+
+<!--////////////////Доступ к элементам коллекции//////////////////-->
+
+    <utils:list id = "cities">
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Chicago"></property>
+            <property name="state" value="IL"></property>
+            <property name="population" value="2853114"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Atlanta"></property>
+            <property name="state" value="GA"></property>
+            <property name="population" value="537958"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Dallas"></property>
+            <property name="state" value="TX"></property>
+            <property name="population" value="1279910"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Houston"></property>
+            <property name="state" value="TX"></property>
+            <property name="population" value="2242193"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Odessa"></property>
+            <property name="state" value="TX"></property>
+            <property name="population" value="90943"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="El Paso"></property>
+            <property name="state" value="TX"></property>
+            <property name="population" value="613190"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Jal"></property>
+            <property name="state" value="NM"></property>
+            <property name="population" value="1996"></property>
+        </bean>
+        <bean class="SpringInAction.components.City.City" >
+            <property name="name" value="Las Cruces"></property>
+            <property name="state" value="NM"></property>
+            <property name="population" value="91865"></property>
+        </bean>
+    </utils:list>
+
+
+    <bean id="citySelector" class="SpringInAction.components.City.CitySelector">
+        <property name="city" value="#{cities[T(java.lang.Math).random() * cities.size()]}">
+        </property>
+    </bean>
+
+
+    <bean id = "knife" class="SpringInAction.components.InjectEx.Knife"></bean>
+
+
+
+</beans>
