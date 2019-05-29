@@ -49,6 +49,9 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-
+    <!-- Реализация доступа через JPA  -->
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="splitterPU"/>
+    </bean>
 
 </beans>
