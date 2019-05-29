@@ -1,0 +1,11 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="splitterPU">
+        <class>Splitter.entity.Splitter</class>
+        <properties>
+            <property name="driver" value="org.postgresql.Driver"/>
+            <property name="url" value="jdbc:postgresql://localhost:5432/SplitterDB"/>
+            <property name="user" value="postgres"/>
+            <property name="pass" value=""/>
+        </properties>
+    </persistence-unit>
+        </persistence>
