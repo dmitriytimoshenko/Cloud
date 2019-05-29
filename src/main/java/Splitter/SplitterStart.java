@@ -1,7 +1,6 @@
 package Splitter;
-
-import Splitter.DAO.SplitterDAO;
 import Splitter.entity.Splitter;
+import Splitter.DAO.SplitterDAO;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,7 +17,7 @@ public class SplitterStart {
         splitter.setPassword("Misha");
         splitter.setFullname("Michael");
         splitter.setEmail("smth@mail.ru");
-        splitter.setUpdateByEmail(true);
+        splitter.setUpdatebyemail(true);
 
 
         //jdbcsplitterdao.addSplitter(splitter);

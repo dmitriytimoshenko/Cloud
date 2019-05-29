@@ -19,6 +19,6 @@ public class JdbcSplitterDAO implements SplitterDAO {
                splitter.getPassword(),
                splitter.getFullname(),
                splitter.getEmail(),
-               splitter.isUpdateByEmail());
+               splitter.getUpdatebyemail());
     }
 }

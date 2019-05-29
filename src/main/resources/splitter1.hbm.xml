@@ -9,6 +9,6 @@
         <property column="password" name="password" type="string"/>
         <property column="fullname" name="fullname" type="string"/>
         <property column="email" name="email" type="string"/>
-        <property column="updatebyemail" name="updateByEmail" type="boolean"/>
+        <property column="updatebyemail" name="updatebyemail" type="boolean"/>
     </class>
 </hibernate-mapping>
