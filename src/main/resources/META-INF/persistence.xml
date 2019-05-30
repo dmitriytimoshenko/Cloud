@@ -6,6 +6,7 @@
             <property name="url" value="jdbc:postgresql://localhost:5432/SplitterDB"/>
             <property name="user" value="postgres"/>
             <property name="pass" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
         </properties>
     </persistence-unit>
         </persistence>
