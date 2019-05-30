@@ -2,6 +2,7 @@ package Splitter;
 import Splitter.entity.Splitter;
 import Splitter.DAO.SplitterDAO;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SplitterStart {
@@ -9,7 +10,8 @@ public class SplitterStart {
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("splitter-config.xml");
         SplitterDAO jdbcsplitterdao = (SplitterDAO)ctx.getBean("jdbcSplitterDAO");
-        SplitterDAO hibernatesplitterdao = (SplitterDAO)ctx.getBean("hibernateSplitterDAO");
+       // SplitterDAO hibernatesplitterdao = (SplitterDAO)ctx.getBean("hibernateSplitterDAO");
+        SplitterDAO jpasplitterdao = (SplitterDAO)ctx.getBean("jpaSplitterDAO");
 
         Splitter splitter = new Splitter();
 
@@ -21,6 +23,7 @@ public class SplitterStart {
 
 
         //jdbcsplitterdao.addSplitter(splitter);
-        hibernatesplitterdao.addSplitter(splitter);
+        //hibernatesplitterdao.addSplitter(splitter);
+        jpasplitterdao.addSplitter(splitter);
     }
 }
