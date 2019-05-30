@@ -25,7 +25,7 @@ public class HibernateSplitterDAO implements SplitterDAO {
     }
 
 
-    @Transactional
+    @Transactional("transactionManagerHib")
     public void addSplitter(Splitter splitter) {
 
         currentSession().save(splitter);

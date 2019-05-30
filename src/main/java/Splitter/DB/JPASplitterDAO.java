@@ -15,7 +15,7 @@ public class JPASplitterDAO implements SplitterDAO {
     @PersistenceContext(unitName = "splitterPU")
     private EntityManager em;
 
-    @Transactional
+    @Transactional("transactionManagerJPA")
     public void addSplitter(Splitter splitter) {
         em.persist(splitter);
     }

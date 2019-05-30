@@ -46,6 +46,11 @@
         <property name="persistenceUnitName" value="splitterPU"/>
     </bean>
 
+    <bean id="transactionManagerJPA"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+
     <!-- Реализация доступа через Hibernate  -->
     <bean id = "hibernateSplitterDAO" class="Splitter.DB.HibernateSplitterDAO"/>
 
@@ -60,7 +65,7 @@
     </bean>
 
     <!-- transactionManager, чтобы отсылать запросы в СУБД (Hibernate)-->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <bean id="transactionManagerHib" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
