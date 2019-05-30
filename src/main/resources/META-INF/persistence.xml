@@ -2,10 +2,10 @@
     <persistence-unit name="splitterPU">
         <class>Splitter.entity.Splitter</class>
         <properties>
-            <property name="driver" value="org.postgresql.Driver"/>
-            <property name="url" value="jdbc:postgresql://localhost:5432/SplitterDB"/>
-            <property name="user" value="postgres"/>
-            <property name="pass" value=""/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/SplitterDB"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
         </properties>
     </persistence-unit>
