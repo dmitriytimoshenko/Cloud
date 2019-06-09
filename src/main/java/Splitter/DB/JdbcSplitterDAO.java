@@ -1,6 +1,5 @@
 package Splitter.DB;
 
-import Splitter.DAO.SplitterDAO;
 import Splitter.entity.Splitter;
 import org.springframework.jdbc.core.JdbcTemplate;
 

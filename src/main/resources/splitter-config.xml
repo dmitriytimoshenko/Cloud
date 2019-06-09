@@ -15,6 +15,7 @@
 
     <!-- Включаем преобразователь исключений в исключения Spring -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <!-- Источник данных "dataSource" -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -40,15 +41,25 @@
     </bean>
 
     <!-- Реализация доступа через JPA  -->
+    <!--
     <bean id = "jpaSplitterDAO" class="Splitter.DB.JPASplitterDAO"/>
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="splitterPU"/>
     </bean>
-
-    <bean id = "transactionManagerJPA"
-          class = "org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="emf"/>
+    -->
+    <!-- Реализация доступа через JPA с использованием управления через контейнер -->
+    <bean id="emfc" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="splitterPU"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
     </bean>
+
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="POSTGRESQL"/>
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="false"/>
+        <property name="databasePlatform" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+    </bean>
+
 
     <!-- Реализация доступа через Hibernate  -->
     <bean id = "hibernateSplitterDAO" class="Splitter.DB.HibernateSplitterDAO"/>
@@ -63,8 +74,17 @@
         </property>
     </bean>
 
-    <!-- transactionManager, чтобы отсылать запросы в СУБД (Hibernate) -->
+
+    <!-- Создание транзакций -->
+    <!-- transactionManager, чтобы отсылать запросы в СУБД (используя Hibernate) -->
     <bean id="transactionManagerHib" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- Создание транзакций -->
+    <!-- transactionManager, чтобы отсылать запросы в СУБД (используя JPA/Hibernate) -->
+    <bean id = "transactionManagerJPA"
+          class = "org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emfc"/>
     </bean>
 </beans>

@@ -1,6 +1,5 @@
 package Splitter.DB;
 
-import Splitter.DAO.SplitterDAO;
 import Splitter.entity.Splitter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,7 +25,6 @@ public class HibernateSplitterDAO implements SplitterDAO {
 
     @Transactional("transactionManagerHib")
     public void addSplitter(Splitter splitter) {
-
         currentSession().save(splitter);
     }
 }

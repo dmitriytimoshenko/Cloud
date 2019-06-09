@@ -1,4 +1,4 @@
-package Splitter.DAO;
+package Splitter.DB;
 
 
 import Splitter.entity.Splitter;
